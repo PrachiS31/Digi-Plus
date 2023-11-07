@@ -1,0 +1,190 @@
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+    <title> 
+           Data 
+      </title> 
+    <style> 
+        body { 
+            margin: 4rem; 
+        } 
+  
+        #formContainer { 
+            margin-bottom: 20px; 
+        } 
+  
+        label { 
+            display: block; 
+            margin-top: 10px; 
+        } 
+  
+        input, 
+        textarea { 
+            width: 300px; 
+            padding: 8px; 
+            margin-top: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+        } 
+  
+        button { 
+            margin: 10px; 
+            padding: 8px 16px; 
+            background-color: black; 
+            color: #fff; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+        } 
+  
+        button:hover { 
+            background-color: black; 
+        } 
+  
+        table { 
+            border-collapse: collapse; 
+            margin-bottom: 20px; 
+            width: 100%; 
+        } 
+  
+        th, 
+        td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        } 
+  
+        th { 
+            background-color: black; 
+            color: #fff; 
+        } 
+    </style> 
+</head> 
+  
+<body> 
+    <h1 style="color: black;"><center>
+        DigiPlus IT Technical Assessment
+    </center>
+    </h1> 
+  
+    <div id="formContainer"> 
+        <label for="RowNum"> 
+            Row Num: 
+        </label> 
+        <input type="text" 
+               id="RowNumInput" 
+               placeholder="Enter your Row Num"> 
+        <label for="NameInput"> 
+            Name: 
+        </label> 
+        <input type="Name" 
+               id="NameInput" 
+               placeholder="Enter your Name"> 
+        <label for="LocationInput"> 
+            Location:
+        </label> 
+        <input type="text" 
+               id="LocationInput" 
+               placeholder="Enter your Location"> 
+        <label for="CgpaInput"> 
+            Cgpa: 
+        </label> 
+        <input type="text" 
+               id="CgpaInput" 
+               placeholder="Enter your Cgpa"> 
+               <br>
+        <button onclick="addData()"> 
+              Add 
+          </button> 
+    </div> 
+    <table id="outputTable"> 
+        <tr> 
+            <th>Row Num</th> 
+            <th>Name</th> 
+            <th>Location</th> 
+            <th>Cgpa</th> 
+            <th>Action</th> 
+        </tr> 
+    </table> 
+    <script> 
+        function addData() { 
+             
+            let RowNum = 
+                document.getElementById("RowNumInput").value; 
+            let Name = 
+                document.getElementById("NameInput").value; 
+            let Location = 
+                document.getElementById("LocationInput").value; 
+            let Cgpa = 
+                document.getElementById("CgpaInput").value; 
+            
+
+            let table = document.getElementById("outputTable"); 
+            let newRow = table.insertRow(table.rows.length); 
+            
+
+            newRow.insertCell(0).innerHTML = RowNum; 
+            newRow.insertCell(1).innerHTML = Name; 
+            newRow.insertCell(2).innerHTML = Location; 
+            newRow.insertCell(3).innerHTML = Cgpa; 
+            newRow.insertCell(4).innerHTML = 
+                '<button onclick="editData(this)">Edit</button>'+ 
+                '<button onclick="deleteData(this)">Delete</button>'; 
+            
+
+            clearInputs(); 
+        } 
+  
+        function editData(button) { 
+            
+   
+            let row = button.parentNode.parentNode; 
+            
+   
+            let RowNumCell = row.cells[0]; 
+            let NameCell = row.cells[1]; 
+            let LocationCell = row.cells[2]; 
+            let CgpaCell = row.cells[3]; 
+            
+
+            let RowNumInput = 
+                prompt("Enter the updated RowNum:", 
+                    RowNumCell.innerHTML); 
+            let NameInput = 
+                prompt("Enter the updated Name:", 
+                    NameCell.innerHTML); 
+            let LocationInput = 
+                prompt("Enter the updated Location:", 
+                    LocationCell.innerHTML 
+                ); 
+            let CgpaInput = 
+                prompt("Enter the updated Cgpa:", 
+                    CgpaCell.innerHTML 
+                ); 
+            
+
+            RowNumCell.innerHTML = RowNumInput; 
+            NameCell.innerHTML = NameInput; 
+            LocationCell.innerHTML = LocationInput; 
+            CgpaCell.innerHTML = CgpaInput; 
+        } 
+        function deleteData(button) { 
+            
+ 
+            let row = button.parentNode.parentNode; 
+  
+            
+            row.parentNode.removeChild(row); 
+        } 
+        function clearInputs() { 
+            
+            document.getElementById("RowNumInput").value = ""; 
+            document.getElementById("NameInput").value = ""; 
+            document.getElementById("LocationInput").value = ""; 
+            document.getElementById("CgpaInput").value = ""; 
+        } 
+    </script> 
+</body> 
+  
+</html>
